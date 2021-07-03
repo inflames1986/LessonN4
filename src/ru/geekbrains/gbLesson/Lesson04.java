@@ -116,9 +116,7 @@ public class Lesson04 {
         }
         return true;
     }
-
     // переписываем проверку победы по циклам условиям - задание №2, №3 - для поля 5, ячеек для победы - 4
-
 
     public static boolean checkWin(char c) { // проверяем для размера поля SIZE, Ячеек - DOTS_TO_WIN
         for (int stl=0; stl<SIZE-DOTS_TO_WIN+1; stl++) { // для столбца
@@ -192,7 +190,6 @@ public class Lesson04 {
 //
 //            if (map[0][0] == c && map[1][1] == c && map[2][2] == c) { return true; }
 //            if (map[0][2] == c && map[1][1] == c && map[2][0] == c) { return true; }
-
 
 
 
