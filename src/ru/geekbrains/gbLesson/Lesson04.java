@@ -117,7 +117,81 @@ public class Lesson04 {
         return true;
     }
 
+    // переписываем проверку победы по циклам условиям - задание №2, №3 - для поля 5, ячеек для победы - 4
 
+
+    public static boolean checkWin(char c) { // проверяем для размера поля SIZE, Ячеек - DOTS_TO_WIN
+        for (int stl=0; stl<SIZE-DOTS_TO_WIN+1; stl++) { // для столбца
+            for (int str=0; str<SIZE-DOTS_TO_WIN+1; str++) { //для строки
+                if (checkDiag(c, stl, str) || checkLine(c, stl, str)) return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkDiag(char с, int sdvigX, int sdvigY) { // проверка диагоналей
+        boolean right, left;
+        right = true;
+        left = true;
+        for (int i=0; i<DOTS_TO_WIN; i++) {
+            right &= (map[i+sdvigX][i+sdvigY] == с); // если правда, то логическое умножение на true = true
+            left &= (map[DOTS_TO_WIN-i-1+sdvigX][i+sdvigY] == с); //если правда, то логическое умножение на true = true
+        }
+        if (right || left) return true;
+        return false;
+    }
+
+    public static boolean checkLine(char c, int sdvigX, int sdvigY) { // проверяем горизонтали и вертикали
+        boolean cols, rows;
+        for (int stl=sdvigX; stl<DOTS_TO_WIN+sdvigX; stl++) {
+            cols = true;
+            rows = true;
+            for (int str=sdvigY; str<DOTS_TO_WIN+sdvigY; str++) {
+                cols &= (map[stl][str] == c);
+                rows &= (map[str][stl] == c);
+            }
+            if (cols || rows) return true;
+        }
+        return false;
+    }
+
+//        boolean vert, hors; // по вертикали, по горизонтали
+//        for (int i = 0; i < 4; i++) {
+//            vert = true; //будем считать что изначально тру
+//            hors = true; //будем считать что изначально тру
+//            for (int j = 0; j < 4; j++) {
+//                vert &= (map[i][j] == c);// если оба тру, то тру, сначала проверяем каждую строку
+//                hors &= (map[j][i] == c);// аналогично проверяем каждый столбец
+//            }
+//            if (vert || hors) return true; //если одно из условий истинно, то истина
+//        }
+//
+//        boolean right, left;
+//        right = true; //диагональ слева направо
+//        left = true;  //диагональ справа налево
+//        for (int i = 0; i < 4; i++) {
+//            right &= (map[i][i] == c); //если правда, то логическое умножение на true = true
+//            left &= (map[4 - i - 1][i] == c); //аналогично
+//        }
+//
+//        if (right || left) return true; // пишет что то можно упростить
+//
+//        return false;
+//    }
+
+}
+
+
+//            if (map[0][0] == c && map[0][1] == c && map[0][2] == c) { return true; }
+//            if (map[1][0] == c && map[1][1] == c && map[1][2] == c) { return true; }
+//            if (map[2][0] == c && map[2][1] == c && map[2][2] == c) { return true; }
+//
+//            if (map[0][0] == c && map[1][0] == c && map[2][0] == c) { return true; }
+//            if (map[0][1] == c && map[1][1] == c && map[2][1] == c) { return true; }
+//            if (map[0][2] == c && map[1][2] == c && map[2][2] == c) { return true; }
+//
+//            if (map[0][0] == c && map[1][1] == c && map[2][2] == c) { return true; }
+//            if (map[0][2] == c && map[1][1] == c && map[2][0] == c) { return true; }
 
 
 
